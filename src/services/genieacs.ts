@@ -11,7 +11,7 @@ export const updateWifiSettings = async (
   console.log("Sending request to GenieACS API...");
   
   // Replace with your GenieACS API endpoint
-  const API_URL = "YOUR_GENIEACS_API_ENDPOINT";
+  const API_URL = "http://https://103.175.238.126:4446";
   
   try {
     // First, verify the PPPoE username and get the device ID
