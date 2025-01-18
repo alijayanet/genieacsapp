@@ -11,7 +11,7 @@ export const updateWifiSettings = async (
   console.log("Sending request to GenieACS API...");
   
   // Replace with your GenieACS API endpoint
-  const API_URL = "http://https://103.175.238.126:4446";
+  const API_URL = "http://103.175.238.126:4446";
   
   try {
     // First, verify the PPPoE username and get the device ID
@@ -29,15 +29,17 @@ export const updateWifiSettings = async (
     const deviceId = devices[0]._id;
 
     // Update WiFi settings for the found device
-    const response = await fetch(`${API_URL}/devices/${deviceId}/wifi-settings`, {
-      method: "PUT",
+    const response = await fetch(`${API_URL}/devices/${deviceId}/tasks`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
-        // Add any required authentication headers
       },
       body: JSON.stringify({
-        ssid,
-        password,
+        name: "setParameterValues",
+        parameterValues: [
+          ["InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.SSID", ssid],
+          ["InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.PreSharedKey", password]
+        ]
       }),
     });
 
