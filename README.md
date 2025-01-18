@@ -9,7 +9,7 @@ git clone https://github.com/alijayanet/genieacsapp
 cd genieacsapp
 ```
 
-# Step 3: Install the necessary dependencies.
+# Install the necessary dependencies.
 
 ```
 npm i
