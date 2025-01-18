@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { updateWifiSettings } from "@/services/genieacs";
 
 export const WifiForm = () => {
+  const [pppoeUsername, setPppoeUsername] = useState("");
   const [ssid, setSsid] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +18,7 @@ export const WifiForm = () => {
 
     try {
       console.log("Attempting to update WiFi settings...");
-      await updateWifiSettings(ssid, password);
+      await updateWifiSettings(pppoeUsername, ssid, password);
       
       toast({
         title: "Success",
@@ -26,13 +27,14 @@ export const WifiForm = () => {
       });
       
       // Reset form
+      setPppoeUsername("");
       setSsid("");
       setPassword("");
     } catch (error) {
       console.error("Failed to update WiFi settings:", error);
       toast({
         title: "Error",
-        description: "Failed to update WiFi settings. Please try again.",
+        description: "Failed to update WiFi settings. Please verify your PPPoE username and try again.",
         variant: "destructive",
       });
     } finally {
@@ -42,6 +44,19 @@ export const WifiForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="space-y-2">
+        <Label htmlFor="pppoeUsername">PPPoE Username</Label>
+        <Input
+          id="pppoeUsername"
+          type="text"
+          value={pppoeUsername}
+          onChange={(e) => setPppoeUsername(e.target.value)}
+          placeholder="Enter your PPPoE username"
+          required
+          className="w-full"
+        />
+      </div>
+
       <div className="space-y-2">
         <Label htmlFor="ssid">WiFi Name (SSID)</Label>
         <Input
