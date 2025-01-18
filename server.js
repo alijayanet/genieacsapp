@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 // GenieACS API endpoint
-const GENIEACS_API = 'http://103.175.238.126:4446';
+const GENIEACS_API = 'http://103.xx.xx.xx:7557';
 
 app.post('/api/wifi-settings', async (req, res) => {
   try {
