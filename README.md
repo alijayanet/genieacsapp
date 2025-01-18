@@ -9,7 +9,7 @@ git clone https://github.com/alijayanet/genieacsapp
 cd genieacsapp
 ```
 ```
-nano /genieacsapp/src/services/
+nano /genieacsapp/src/services/genieacs.ts
 ```
 # Install the necessary dependencies.
 
